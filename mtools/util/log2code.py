@@ -6,8 +6,8 @@ import os
 import re
 # import sys
 # import argparse
-from six.moves import zip_longest as izip_longest
-from six.moves import cPickle
+from itertools import zip_longest as izip_longest
+import pickle
 
 import mtools
 
@@ -20,7 +20,7 @@ def import_l2c_db():
     """
     data_path = os.path.join(os.path.dirname(mtools.__file__), 'data')
     if os.path.exists(os.path.join(data_path, 'log2code.pickle')):
-        av, lv, lbw, lcl = cPickle.load(open(os.path.join(data_path,
+        av, lv, lbw, lcl = pickle.load(open(os.path.join(data_path,
                                                           'log2code.pickle'),
                                              'rb'))
         return av, lv, lbw, lcl
@@ -167,7 +167,7 @@ class Log2CodeConverter(object):
 #
 #     def _import_l2c_db(self):
 #         (self.all_versions, self.logs_versions, self.logs_by_word,
-#          self.log_code_lines) = cPickle.load(open('./logdb.pickle', 'rb'))
+#          self.log_code_lines) = pickle.load(open('./logdb.pickle', 'rb'))
 #
 #     def _parse_args(self):
 #         # create parser object
